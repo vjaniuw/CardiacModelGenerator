@@ -6,27 +6,22 @@ build-backend = "hatchling.build"
 name = "CardiacModelGenerator"
 version = "0.1.0"
 dependencies = [
-  "numpy",
-  "scipy",
-  "matplotlib",
-  "vtk",
-  "pandas",
-  "h5py",
-  "nibabel",
-  "pillow",
-  "scikit-image",
-  "scikit-learn",
+  "numpy>=1.26.4",
+  "matplotlib>=3.9.2",
+  "pydicom>=3.0.1",
+  "nibabel>=5.3.2",
+  "opencv-python>=4.10.0",
+  "pyvista>=0.44.2",
 ]
+
 requires-python = ">=3.8"
 authors = [
   {name = "Vinay Jani", email = "vjani@uw.edu"}
 ]
-authors = [
-  {name = "Vinay Jani", email = "vjani@uw.edu"}
-]
+
 description = "Generate 3D model from clinical cardiac imaging data "
 readme = "README.md"
-license = {file = "LICENSE.txt"}
+license = {file = "LICENSE"}
 keywords = ["cardiac", "modeling", "medical imaging", "VTK", "3D"]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -38,9 +33,11 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "black", "flake8"]
-gui = ["PyQt5"]
+dev = ["black", "flake8"]
+gui = ["wxPython"]
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/CardiacModelGenerator"]
 
 [project.urls]
 Homepage = "https://github.com/vjaniuw/CardiacModelGenerator"
@@ -51,5 +48,3 @@ Repository = "https://github.com/vjaniuw/CardiacModelGenerator"
 [project.scripts]
 generate-cardiac-model = "cardiac_model_generator:main"
 
-[project.entry-points."console_scripts"]
-cardiac-cli = "cardiac_model_generator.cli:main"
