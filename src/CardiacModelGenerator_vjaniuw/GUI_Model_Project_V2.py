@@ -3,7 +3,7 @@
 """
 Created on Tue Dec  3 17:35:28 2024
 
-@author: viv5149
+@author: vinayjani
 """
 
 import wx
