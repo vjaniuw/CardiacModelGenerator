@@ -3,7 +3,7 @@
 """
 Created on Tue Dec  3 17:35:28 2024
 
-@author: vinayjani
+@author: viv5149
 """
 
 import wx
@@ -141,6 +141,110 @@ def get_cell_quality(final_volumetric_mesh):
 
 
 
+'''
+/**
+ * @class CardiacMeshalyzer
+ * @brief Brief description of the CardiacMeshalyzer class.
+ *
+ * Detailed description of the CardiacMeshalyzer class.
+ */
+
+    /**
+     * @brief __init__ method.
+     *
+     * Detailed description of __init__.
+     */
+
+    /**
+     * @brief vinayDicomSeries method.
+     *
+     * Detailed description of vinayDicomSeries.
+     */
+
+    /**
+     * @brief get_masks method.
+     *
+     * Detailed description of get_masks.
+     */
+
+    /**
+     * @brief setup_menu_bar method.
+     *
+     * Detailed description of setup_menu_bar.
+     */
+
+    /**
+     * @brief add_page method.
+     *
+     * Detailed description of add_page.
+     */
+
+    /**
+     * @brief show_page method.
+     *
+     * Detailed description of show_page.
+     */
+
+    /**
+     * @brief save_point_cloud method.
+     *
+     * Detailed description of save_point_cloud.
+     */
+
+    /**
+     * @brief save_tetra_cloud method.
+     *
+     * Detailed description of save_tetra_cloud.
+     */
+
+    /**
+     * @brief clear_all_files method.
+     *
+     * Detailed description of clear_all_files.
+     */
+
+    /**
+     * @brief close_program method.
+     *
+     * Detailed description of close_program.
+     */
+
+    /**
+     * @brief getMaskOverlay method.
+     *
+     * Detailed description of getMaskOverlay.
+     */
+
+    /**
+     * @brief open_point_cloud_options method.
+     *
+     * Detailed description of open_point_cloud_options.
+     */
+
+    /**
+     * @brief on_generate_point_cloud method.
+     *
+     * Detailed description of on_generate_point_cloud.
+     */
+
+    /**
+     * @brief on_generate_tetra_mesh method.
+     *
+     * Detailed description of on_generate_tetra_mesh.
+     */
+
+    /**
+     * @brief on_clean_tetra_mesh method.
+     *
+     * Detailed description of on_clean_tetra_mesh.
+     */
+
+    /**
+     * @brief on_extract_mesh_quality method.
+     *
+     * Detailed description of on_extract_mesh_quality.
+     */
+'''
 class CardiacMeshalyzer(wx.Frame): 
     def __init__(self, *args, **kwargs): 
         super().__init__(*args, **kwargs)
@@ -498,6 +602,45 @@ class CardiacMeshalyzer(wx.Frame):
 
    
 
+'''
+/**
+ * @class StartPage
+ * @brief Brief description of the StartPage class.
+ *
+ * Detailed description of the StartPage class.
+ */
+
+    /**
+     * @brief __init__ method.
+     *
+     * Detailed description of __init__.
+     */
+
+    /**
+     * @brief load_image method.
+     *
+     * Detailed description of load_image.
+     */
+
+    /**
+     * @brief on_resize method.
+     *
+     * Detailed description of on_resize.
+     */
+
+    /**
+     * @brief open_home_page method.
+     *
+     * Detailed description of open_home_page.
+     */
+
+    /**
+     * @brief close_program method.
+     *
+     * Detailed description of close_program.
+     */
+'''
+
 class StartPage(wx.ScrolledWindow): 
     def __init__(self, parent):
         super().__init__(parent) 
@@ -578,6 +721,44 @@ class StartPage(wx.ScrolledWindow):
         
         
         
+'''
+/**
+ * @class HomePage
+ * @brief Brief description of the HomePage class.
+ *
+ * Detailed description of the HomePage class.
+ */
+
+    /**
+     * @brief __init__ method.
+     *
+     * Detailed description of __init__.
+     */
+
+    /**
+     * @brief load_dicom_series method.
+     *
+     * Detailed description of load_dicom_series.
+     */
+
+    /**
+     * @brief load_segmentation method.
+     *
+     * Detailed description of load_segmentation.
+     */
+
+    /**
+     * @brief view_set method.
+     *
+     * Detailed description of view_set.
+     */
+
+    /**
+     * @brief update_image method.
+     *
+     * Detailed description of update_image.
+     */
+''' 
 class HomePage(wx.Panel): 
     def __init__(self, parent):
         super().__init__(parent)
@@ -767,6 +948,38 @@ class HomePage(wx.Panel):
             self.image_display.SetBitmap(wx.Bitmap(image))
 
 
+'''
+/**
+ * @class PointCloudOptions
+ * @brief Brief description of the PointCloudOptions class.
+ *
+ * Detailed description of the PointCloudOptions class.
+ */
+
+    /**
+     * @brief __init__ method.
+     *
+     * Detailed description of __init__.
+     */
+
+    /**
+     * @brief update_point_size_value method.
+     *
+     * Detailed description of update_point_size_value.
+     */
+
+    /**
+     * @brief update_merging_tolerance_value method.
+     *
+     * Detailed description of update_merging_tolerance_value.
+     */
+
+    /**
+     * @brief on_generate_point_cloud method.
+     *
+     * Detailed description of on_generate_point_cloud.
+     */
+'''
 class PointCloudOptions(wx.Dialog):
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, title="Point Cloud Generation Options", *args, **kwargs)
@@ -856,6 +1069,32 @@ class PointCloudOptions(wx.Dialog):
 
         self.EndModal(wx.ID_OK)
 
+'''
+/**
+ * @class CleanTetraMeshOptions
+ * @brief Brief description of the CleanTetraMeshOptions class.
+ *
+ * Detailed description of the CleanTetraMeshOptions class.
+ */
+
+    /**
+     * @brief __init__ method.
+     *
+     * Detailed description of __init__.
+     */
+
+    /**
+     * @brief on_ok method.
+     *
+     * Detailed description of on_ok.
+     */
+
+    /**
+     * @brief on_cancel method.
+     *
+     * Detailed description of on_cancel.
+     */
+'''
 class CleanTetraMeshOptions(wx.Dialog):
     def __init__(self, parent, *args, **kwargs):
         super().__init__(parent, title="Clean Tetra Mesh Options", *args, **kwargs)
