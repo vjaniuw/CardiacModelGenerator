@@ -11,15 +11,14 @@ How to Use
 1. First install via 
 
 ```bash
-pip install sphinx sphinx-markdown-builder
+pip install CardiacModelGenerator
 ```
 2.  Then run the following in python either in an IDE or via terminal: 
 
 ```bash 
 from CardiacModelGenerator import CardiacModelGenerator 
-```
-
 CardiacModelGenerator.main()
+```
 
 __If you are using macOS or Apple Silicon__: 
 
@@ -27,10 +26,10 @@ __Use pythonw. If not wx will not work__
 
 An example is below: 
 
-![My Picture](iMarkdownPictures/Example1.png)
+![My Picture](MarkdownPictures/Example1.png)
 
 If successfully run, the following should appear: 
-![My Picture](iMarkdownPictures/Example2.png)
+![My Picture](MarkdownPictures/Example2.png)
 
 
 
