@@ -12,12 +12,12 @@ How to Use
 
 ```bash
 pip install sphinx sphinx-markdown-builder
-
+```
 2.  Then run the following in python either in an IDE or via terminal: 
 
 ```bash 
-
 from CardiacModelGenerator import CardiacModelGenerator 
+```
 
 CardiacModelGenerator.main()
 
