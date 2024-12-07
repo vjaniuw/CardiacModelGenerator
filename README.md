@@ -1,12 +1,12 @@
 # CardiacModelGenerator
 
 
-##Overview
+## Overview
 
 CardiacModelGenerator.py is a Python-based application designed for viewing slice overlays, converting pixels to universal coordinates, generating point clouds, and generating/enhancing tetrahedral meshes. Specifically, this is for cardiac models and uses MRI DICOM images and nifti masks.
 
 
-###How to Use
+### How to Use
 
 1. First install via 
 
@@ -59,11 +59,11 @@ in this order. To access these functions, go to the mesh processing at the top.
 
 
 
-##Features
+## Features
 
 Image/Mask Viewer: Allows for a user to scroll through overlays of a mask and image Point Clouds: Can generate point cloud based on user inputs Universal Coordinates: Convers Mask/Image data to universal coordinates based on Dicom metadata Mesh: Allows for tetrahedral meshes from user inputs
 
-###Requirements
+### Requirements
 
 __<u>All the requirements should be installed when you pip install the package. <\u>__
 
@@ -73,11 +73,11 @@ wx numpy pydicom nibabel cv2 (OpenCV) random matplotlib pyvista Install dependen
 
 pip install wxpython numpy pydicom nibabel opencv-python matplotlib pyvista How to Use
 
-###Input Data 
+### Input Data 
 Input Data: Prepare images in a folder (should be dicoms). Have masks as nifti. Examples of data are given in the github. 
 
 
-###GUI
+### GUI
 Interactive GUI: The script uses wx for GUI, allowing you to interactively select data and configure settings. Visualize Point Clouds: Choose from multiple colormaps and adjust parameters like point_size and tol. 
 Select Dicom Image Folder
 User selects mask for that folder
