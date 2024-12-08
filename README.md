@@ -20,13 +20,16 @@ from CardiacModelGenerator import CardiacModelGenerator
 CardiacModelGenerator.main()
 ```
 
-__If you are using macOS or Apple Silicon__: 
+__If you are having problems with the pip install especially if you are using Apple Silicon. These problems are known to exist due to known issues with wx and 
+Apple Silicon. Please try to first purge all the cache and make a new environemnt with latest python version (3.13). A workflow is shown below__:
 
-__Use pythonw. If not wx will not work__
+An example of this is below: 
 
-An example is below: 
+![My Picture](MarkdownPictures/ExampleSetup1.png)
 
-![My Picture](MarkdownPictures/Example1.png)
+![My Picture](MarkdownPictures/ExampleSetup2.png)
+
+![My Picture](MarkdownPictures/ExampleSetup3.png)
 
 If successfully run, the following should appear: 
 ![My Picture](MarkdownPictures/Example2.png)
