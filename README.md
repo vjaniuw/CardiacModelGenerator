@@ -25,11 +25,11 @@ Apple Silicon. Please try to first purge all the cache and make a new environemn
 
 An example of this is below: 
 
-[My Picture](MarkdownPictures/ExampleSetup1.png)
+![My Picture](MarkdownPictures/Example_Setup1.png)
 
-[My Picture](MarkdownPictures/ExampleSetup2.png)
+![My Picture](MarkdownPictures/Example_Setup2.png)
 
-[My Picture](MarkdownPictures/ExampleSetup3.png)
+![My Picture](MarkdownPictures/Example_Setup3.png)
 
 If successfully run, the following should appear: 
 ![My Picture](MarkdownPictures/Example2.png)
