@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "CardiacModelGenerator"
-version = "0.1.8"
+version = "0.1.9"
 dependencies = [
   "wxpython>=4.2.2",  
   "numpy>=1.21.0,<2.0.0",  

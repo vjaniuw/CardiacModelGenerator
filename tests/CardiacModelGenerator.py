@@ -30,17 +30,17 @@ def generate_point_cloud(coords1=None, masks1=None, coords2=None, masks2=None, c
     """
     @brief Generates and visualizes a point cloud from the segmentations and dicoms.
     Atleast one coords and masks pair is needed. 
-    @param coords1 Optional. First image stack coordinates (4D np.ndarray).
-    @param masks1 Optional. First set of masks corresponding to this view (a 3D np.ndarray).
-    @param coords2 Optional. Second image view coordinates(4D np.ndarray array).
-    @param masks2 Optional. Second set of masks corresponding to coords2 (a 3D np.ndarray) .
-    @param coords3 Optional. Third set of coordinates (4D np.ndarray array).
-    @param masks3 Optional. Third set of masks corresponding to coords3 (a 3D np.ndarray).
-    @param whichmask Mask value to extract points (default: 1, int).
-    @param tol Tolerance for cleaning the point cloud (default: 0.1, float).
-    @param colormap_name Colormap used for coloring the point cloud (default: "viridis", string which corresponds to the matploblib color library).
-    @param point_size Size of the points in the visualization (default: 5, int).
-    @return A PyVista PolyData object representing the cleaned point cloud (a pv.core.pointset.PolyData object).
+    @param coords1 Optional. First image view dicoms.
+    @param masks1 Optional. First set of masks corresponding to this view.
+    @param coords2 Optional. Second set of coordinates (3D array).
+    @param masks2 Optional. Second set of masks corresponding to coords2.
+    @param coords3 Optional. Third set of coordinates (3D array).
+    @param masks3 Optional. Third set of masks corresponding to coords3.
+    @param whichmask Mask value to extract points (default: 1).
+    @param tol Tolerance for cleaning the point cloud (default: 0.1).
+    @param colormap_name Colormap used for coloring the point cloud (default: "viridis").
+    @param point_size Size of the points in the visualization (default: 5).
+    @return A PyVista PolyData object representing the cleaned point cloud.
     """
 
     all_xcoords, all_ycoords, all_zcoords = [], [], []
@@ -95,10 +95,9 @@ def generate_point_cloud(coords1=None, masks1=None, coords2=None, masks2=None, c
 def generate_tetra_mesh(point_cloud_cleaned):
 
     """
-    @brief Generates a tetrahedral mesh from a cleaned point cloud. Note as long at the data is a pv.PolyData point cloud this function 
-    will work. It does not have to be cleaned in this tool the point cloud is cleaned. 
-    @param point_cloud_cleaned A PyVista PolyData object representing the cleaned point cloud ( a pv.core.pointset.PolyData object).
-    @return A PyVista UnstructuredGrid object representing the generated tetrahedral mesh (a pv.core.pointset.UnstructuredGrid object).
+    @brief Generates a tetrahedral mesh from a cleaned point cloud.
+    @param point_cloud_cleaned A PyVista PolyData object representing the cleaned point cloud.
+    @return A PyVista UnstructuredGrid object representing the generated tetrahedral mesh.
     """
 
    
@@ -116,14 +115,13 @@ def generate_tetra_mesh(point_cloud_cleaned):
 def clean_tetra_mesh(grid, subdivisions=2, poisson_iterations=10, clean_tolerance=0.001, quality_threshold=1e-5):
     
     """
-    @brief Cleans and smooths a tetrahedral mesh to improve quality and smooth the mesh. This is done via a poisson smoothing and 
-    subdividing the tetrahedra comprising the mesh so as to improve resolution. 
-    @param grid A PyVista UnstructuredGrid object representing the input volumetric mesh (a pv.core.pointset.UnstructuredGrid).
-    @param subdivisions Number of subdivisions for mesh refinement (default: 2, int).
-    @param poisson_iterations Number of smoothing iterations (default: 10, float).
-    @param clean_tolerance Tolerance for cleaning the mesh (default: 0.001, float).
-    @param quality_threshold Minimum acceptable quality for mesh cells (default: 1e-5, float).
-    @return A PyVista PolyData object representing the cleaned, smoothed, and increased resolution mesh (a pv.core.pointset.UnstructuredGrid).
+    @brief Cleans and smooths a tetrahedral mesh to improve quality and remove artifacts.
+    @param grid A PyVista UnstructuredGrid object representing the input volumetric mesh.
+    @param subdivisions Number of subdivisions for mesh refinement (default: 2).
+    @param poisson_iterations Number of smoothing iterations (default: 10).
+    @param clean_tolerance Tolerance for cleaning the mesh (default: 0.001).
+    @param quality_threshold Minimum acceptable quality for mesh cells (default: 1e-5).
+    @return A PyVista PolyData object representing the cleaned and smoothed surface mesh.
     """
 
 
@@ -148,10 +146,9 @@ def clean_tetra_mesh(grid, subdivisions=2, poisson_iterations=10, clean_toleranc
 
 def get_cell_quality(final_volumetric_mesh): 
     """
-    @brief Computes and visualizes cell quality for a tetrahedral mesh. This is done via computing the Jacobian of a matrix comprising 
-    of cell quality factors. 
-    @param final_volumetric_mesh A PyVista UnstructuredGrid object representing the volumetric mesh (a pv.core.pointset.UnstructuredGrid).
-    @return A PyVista UnstructuredGrid object with cell quality values added as a scalar field (a pv.core.pointset.UnstructuredGrid).
+    @brief Computes and visualizes cell quality for a tetrahedral mesh.
+    @param final_volumetric_mesh A PyVista UnstructuredGrid object representing the volumetric mesh.
+    @return A PyVista UnstructuredGrid object with cell quality values added as a scalar field.
     """
     qual = final_volumetric_mesh.compute_cell_quality(quality_measure='scaled_jacobian')
     plotter = pv.Plotter()  # Create a Plotter instance
@@ -160,24 +157,11 @@ def get_cell_quality(final_volumetric_mesh):
     
     return qual
 
-def save_vista(filepath, pyvista_object):
-    """
-    @brief Saves a PyVista object to the specified file path.
-    @param filepath The file path to save the PyVista object.
-    @param pyvista_object The PyVista object to be saved.
-    """
-    try:
-        pyvista_object.save(filepath)
-        wx.MessageBox(f"File successfully saved to {filepath}.", "Success", wx.OK | wx.ICON_INFORMATION)
-    except Exception as e:
-        wx.MessageBox(f"Failed to save file:\n{str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
-        
 class CardiacMeshalyzer(wx.Frame): 
     """
     @class CardiacMeshalyzer
-    @brief GUI application for managing and processing Dicoms and segmentations in the form of niftis. The 
-    tool is most helpful for creating 3D tetrahedral meshes from this data
+    @brief GUI application for managing and processing cardiac imaging data.
     @details This class provides a graphical user interface (GUI) for handling DICOM series, generating point clouds, 
              creating tetrahedral meshes, and performing mesh cleaning and quality assessment.
 
@@ -212,8 +196,6 @@ class CardiacMeshalyzer(wx.Frame):
     }
     @enduml
     """
-
-
 
     def __init__(self, *args, **kwargs): 
         """
@@ -259,7 +241,7 @@ class CardiacMeshalyzer(wx.Frame):
     def ImportDicomSeries(self, folder_path):
         """
         @brief Processes a series of DICOM files in a given folder.
-        @param folder_path The path to the folder containing DICOM files (string).
+        @param folder_path The path to the folder containing DICOM files.
         @return A tuple containing:
             - Volume: A 3D NumPy array representing the reconstructed image volume.
             - Coords: A 4D NumPy array with the absolute (x, y, z) coordinates for each pixel.
@@ -319,7 +301,7 @@ class CardiacMeshalyzer(wx.Frame):
     def get_masks(self, mask_path):
         """
         @brief Loads segmentation masks from a specified file.
-        @param mask_path The file path to the segmentation mask in NIfTI format (string).
+        @param mask_path The file path to the segmentation mask in NIfTI format.
         @return A NumPy array containing the segmentation mask data.
         @details Reads the segmentation mask from the provided NIfTI file and converts it to a NumPy array for further processing.
         """
@@ -425,38 +407,25 @@ class CardiacMeshalyzer(wx.Frame):
         self.page_container.Layout()
         
     def save_point_cloud(self, event):
+
         """
-        @brief Saves the generated point cloud to a file using the save_vista helper function.
+        @brief Saves the generated point cloud to a file.
         @param event The wxPython event triggering this action.
+        @details Displays an informational message. The save functionality is not yet implemented.
         """
-        if not hasattr(self, 'last_point_cloud') or self.last_point_cloud is None:
-            wx.MessageBox("Point cloud has not been generated. Please generate a point cloud first.", "Error", wx.OK | wx.ICON_ERROR)
-            return
 
-        dialog = wx.TextEntryDialog(self, "Enter the file path to save the point cloud (with .ply or .vtk extension):", 
-                                    "Save Point Cloud")
-        if dialog.ShowModal() == wx.ID_OK:
-            filepath = dialog.GetValue()
-            save_vista(filepath, self.last_point_cloud)
-        dialog.Destroy()
-
+        wx.MessageBox("Save Point Cloud functionality not yet implemented.", "Info", wx.OK | wx.ICON_INFORMATION)
 
     def save_tetra_cloud(self, event):
+
         """
-        @brief Saves the generated tetrahedral mesh to a file using the save_vista helper function.
+        @brief Saves the generated tetrahedral mesh to a file.
         @param event The wxPython event triggering this action.
+        @details Displays an informational message. The save functionality is not yet implemented.
         """
-        if not hasattr(self, 'last_tetra_mesh') or self.last_tetra_mesh is None:
-            wx.MessageBox("Tetrahedral mesh has not been generated. Please generate a tetrahedral mesh first.", "Error", wx.OK | wx.ICON_ERROR)
-            return
 
-        dialog = wx.TextEntryDialog(self, "Enter the file path to save the tetrahedral mesh (with .vtk extension):", 
-                                    "Save Tetrahedral Mesh")
-        if dialog.ShowModal() == wx.ID_OK:
-            filepath = dialog.GetValue()
-            save_vista(filepath, self.last_tetra_mesh)
-        dialog.Destroy()
-
+        wx.MessageBox("Save Tetra Cloud functionality not yet implemented.", "Info", wx.OK | wx.ICON_INFORMATION)
+        
     def clear_all_files(self, event):
 
         """
@@ -483,11 +452,11 @@ class CardiacMeshalyzer(wx.Frame):
     def getMaskOverlay(self, masks, volume):
         
         """
-        @brief Generates an overlay of the segmentation mask on the volume. The segmentation has some transperancy.
-        @param masks A NumPy array containing the segmentation masks (a 3D np.ndarray).
-        @param volume A NumPy array representing the image volume (a 3D np.ndarray).
-        @return A NumPy array containing the overlay, where the segmentation masks are blended or burned with the volume (a 4D np.ndarray).
-        @details This method normalizes the volume data, assigns colors based on the mask, and overlays colors on the volume. 
+        @brief Generates an overlay of the segmentation mask on the volume.
+        @param masks A NumPy array containing the segmentation masks.
+        @param volume A NumPy array representing the image volume.
+        @return A NumPy array containing the overlay, where the segmentation masks are blended with the volume.
+        @details This method normalizes the volume data, assigns colors to the segmentation masks, and blends them with the volume
                  to create a visual overlay. Handles up to 4 predefined segmentation classes and generates random colors for others.
         @throws ValueError If the volume data is not numeric or not a NumPy array.
         """
@@ -991,7 +960,7 @@ class HomePage(wx.Panel):
 
         """
         @brief Loads a DICOM series for a specified view.
-        @param view_num The view number (1, 2, or 3) to associate with the loaded DICOM series. Example views for heart are SA, 4CH, 3CH, and 2CH.
+        @param view_num The view number (1, 2, or 3) to associate with the loaded DICOM series.
         @details Opens a directory dialog to select a folder containing the DICOM series. The series is processed to extract the
                  image volume, coordinates, and individual image objects. These are stored in the parent window's `dicom_data` dictionary.
         """
